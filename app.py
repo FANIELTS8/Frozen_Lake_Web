@@ -12,7 +12,7 @@ from env import Environment
 
 st.set_page_config(layout="wide")
 st.title("Reinforcement Learning")
-st.subheader("Solving gridworld through value iteration")
+st.subheader("Solving Frozen Lake through value iteration")
 col1 = st.sidebar
 col2, col3 = st.columns([4, 4])
 
@@ -22,9 +22,9 @@ initial_wall = [5, 7, 11, 12]
 total_range = np.arange(num_rows*num_cols).reshape(num_rows,
                                                    num_cols
                                                    ).astype(np.float64)
-col1.subheader("Build new wall")
-col1.write("Add or delete a cell to change the wall")
-select_wall = col1.multiselect("But make sure there is at least one path back home:)",
+col1.subheader("Build ice holes")
+col1.write("Add or delete a cell to change the ice holes")
+select_wall = col1.multiselect("But make sure there is at least one path to frisbee:)",
                                list((range(1, (num_rows*num_cols)-1))),
                                initial_wall
                                )
@@ -58,7 +58,7 @@ Environment.build_wall(mask=mask)
 agent = Agent(Environment)
 f, ax = agent.pretraining_heatmap()
 yticks = ["Start", "", "", "", ]
-xticks = [ "", "", "", "Home"]
+xticks = [ "", "", "", "Frisbee"]
 ax.set_xticklabels(xticks)
 ax.set_yticklabels(yticks)
 col2.pyplot(f)
@@ -79,7 +79,7 @@ if col2.button('Start Reinforcement Learning'):
         col3.pyplot(f2)
         col3.subheader("Shortest path is shown in blue")
     else:
-        col2.write("You might have block every path back home. Consider redoing your wall.")
+        col2.write("You might have block every path back home. Consider redoing ice holes.")
 
 del agent
 del Environment
