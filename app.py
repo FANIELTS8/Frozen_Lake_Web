@@ -22,7 +22,7 @@ initial_wall = [5, 7, 11, 12]
 total_range = np.arange(num_rows*num_cols).reshape(num_rows,
                                                    num_cols
                                                    ).astype(np.float64)
-col1.subheader("Build ice holes")
+col1.subheader("Environment Construction")
 col1.write("Add or delete a cell to change the ice holes")
 select_wall = col1.multiselect("But make sure there is at least one path to frisbee:)",
                                list((range(1, (num_rows*num_cols)-1))),
